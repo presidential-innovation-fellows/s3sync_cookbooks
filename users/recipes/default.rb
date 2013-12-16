@@ -6,9 +6,10 @@
 
 user node[:user][:name] do
 	supports :manage_home => true
+	home "/home/#{node[:user][:name]}"
 end
 
-unless File.exist? "/home/#{node[:user][:name]}/.ssh/authorized_keys"
+unless Dir.exist? "/home/#{node[:user][:name]}/.ssh"
 	directory "/home/#{node[:user][:name]}/.ssh" do
 		owner node[:user][:name]
 		group node[:user][:name]
