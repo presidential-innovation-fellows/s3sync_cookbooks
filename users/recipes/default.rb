@@ -21,5 +21,5 @@ file "/home/#{node[:user][:name]}/.ssh/authorized_keys" do
 	group node[:user][:name]
 	content node[:user][:key]
 	mode 00644
-	action: create
+	action :create
 end
