@@ -16,10 +16,10 @@ directory "/home/#{node[:user][:name]}/.ssh" do
 	action :create
 end
 
-file "/home/#{node[:user][:name]}/.ssh/authorized_keys" do
+'''file "/home/#{node[:user][:name]}/.ssh/authorized_keys" do
 	owner node[:user][:name]
 	group node[:user][:name]
 	content node[:user][:key]
 	mode 00644
 	action :create
-end
+end'''
