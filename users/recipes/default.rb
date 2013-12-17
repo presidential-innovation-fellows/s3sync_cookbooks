@@ -6,20 +6,12 @@
 
 user node[:user][:name] do
 	supports :manage_home => true
+	uid 3828
 	home "/home/#{node[:user][:name]}"
+	
+	template "/home/#{node[:user][:name]}/.ssh/authorized_keys" do
+		source "authorized_keys.erb"
+		owner node[:user][:name]
+		mode "0600"
+	end
 end
-'''
-directory "/home/#{node[:user][:name]}/.ssh" do
-	owner node[:user][:name]
-	group node[:user][:name]
-	mode 00700
-	action :create
-end
-
-file "/home/#{node[:user][:name]}/.ssh/authorized_keys" do
-	owner node[:user][:name]
-	group node[:user][:name]
-	content node[:user][:key]
-	mode 00644
-	action :create
-end'''
